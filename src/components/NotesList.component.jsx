@@ -6,6 +6,7 @@ const NotesList = ({ notes, setNotes, setIsEditing, setNoteTitle, setNoteDesc, s
     const handleDelete = (id) => {
         const updatedNotes = notes.filter(note => note.id !== id);
         setNotes(updatedNotes);
+        localStorage.setItem('notes',JSON.stringify(notes));
     }
 
     // Function on Edit Button

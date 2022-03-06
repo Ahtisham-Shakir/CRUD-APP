@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NotesList from "./NotesList.component";
 
 
@@ -16,6 +16,9 @@ const Form = () => {
         setNoteDesc('');
         setNoteId('');
     }
+    useEffect(()=>{
+        setNotes(JSON.parse(localStorage.getItem('notes')));
+    },[]);
 
     // Add Note Function
     const handleClick = () => {
@@ -25,8 +28,9 @@ const Form = () => {
             id: Math.random() + noteTitle
         }
         setNotes([...notes, notesObj]);
-
         handleReset();
+        localStorage.setItem('notes',JSON.stringify(notes));
+
     }
 
     const handleUpdate =()=>{
@@ -39,6 +43,7 @@ const Form = () => {
         })
         setNotes(updatedArr);
         handleReset();
+        localStorage.setItem('notes',JSON.stringify(notes));
     }
 
 
